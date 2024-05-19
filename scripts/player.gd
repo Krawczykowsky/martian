@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @onready var animated_sprite = $AnimatedSprite2D
 
@@ -6,17 +7,20 @@ extends CharacterBody2D
 @export var speed = 120
 @export var jump_force = 200
 
+var is_active = true
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		if velocity.y > 500:
 			velocity.y = 500
-	
-	if Input.is_action_just_pressed("jump") && is_on_floor():
-		velocity.y = -jump_force
-	
-	
-	var direction = Input.get_axis("move_left", "move_right")
+			
+	var direction = 0
+	if is_active == true:
+		if Input.is_action_just_pressed("jump") && is_on_floor():
+			jump(jump_force)
+		direction = Input.get_axis("move_left", "move_right")
+		
 	if direction != 0:
 		animated_sprite.flip_h = (direction == -1)
 		
@@ -36,3 +40,5 @@ func update_animation(direction):
 		else:
 			animated_sprite.play("fall")
 
+func jump(force):
+	velocity.y = -force

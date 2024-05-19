@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgnld1lyhm0gf"]
+
+[ext_resource type="PackedScene" uid="uid://i4detybtf8tr" path="res://scenes/bg.tscn" id="1_8rd4n"]
+[ext_resource type="Script" path="res://scripts/start_menu.gd" id="1_riko4"]
+[ext_resource type="Texture2D" uid="uid://bpmv336upm73d" path="res://assets/textures/bg/Green.png" id="2_r43rp"]
+[ext_resource type="FontFile" uid="uid://bbywpxdpp58l1" path="res://assets/fonts/Kenney Pixel Square.ttf" id="3_yufdl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vui2a"]
+font = ExtResource("3_yufdl")
+font_size = 23
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_riko4")
+
+[node name="BG" parent="." instance=ExtResource("1_8rd4n")]
+bg_texture = ExtResource("2_r43rp")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -56.0
+offset_right = 129.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "MArian Marsianin"
+label_settings = SubResource("LabelSettings_vui2a")
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_right = 62.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yufdl")
+text = "Start Game"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = 40.0
+offset_right = 62.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_yufdl")
+text = "Quit
+"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
